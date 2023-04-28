@@ -1,6 +1,8 @@
+import 'reflect-metadata';
 import httpServer from './infra/http-server';
+import { config } from './shared/config';
 
 (async () => {
   const server = await httpServer();
-  server.listen(3000, () => console.log(`running server on http://localhost:3000`));
+  server.listen(config.SERVER_PORT, () => console.log(`Running server on http://localhost:${config.SERVER_PORT}`));
 })();
