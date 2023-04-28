@@ -3,7 +3,7 @@ import { Customer } from './customer';
 import { OrderServiceStatusEnum } from './enum/order-service-status-enum';
 
 export class OrderService {
-  id: string;
+  id?: string;
 
   title: string;
 
@@ -13,11 +13,11 @@ export class OrderService {
 
   status: OrderServiceStatusEnum;
 
-  architect: Architect;
+  architect?: Architect;
 
   customer: Customer;
 
-  createdAt: Date;
+  createdAt?: Date;
 
-  updatedAt: Date;
+  updatedAt?: Date;
 }

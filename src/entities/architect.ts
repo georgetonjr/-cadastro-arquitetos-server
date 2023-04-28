@@ -1,5 +1,5 @@
 export class Architect {
-  id: string;
+  id?: string;
 
   name: string;
 
@@ -11,9 +11,7 @@ export class Architect {
 
   age: number;
 
-  otherInformations: string;
+  createdAt?: Date;
 
-  createdAt: Date;
-
-  updatedAt: Date;
+  updatedAt?: Date;
 }
