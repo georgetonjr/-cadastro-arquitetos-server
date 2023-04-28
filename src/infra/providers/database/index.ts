@@ -9,7 +9,7 @@ export const dataSource = new DataSource({
   username: config.DATABASE.USER,
   password: config.DATABASE.PASSWORD,
   database: config.DATABASE.DATABASE_NAME,
-  entities: [],
-  migrations: [resolve(__dirname, '../migrations/*{.ts, .js}')],
+  entities: [resolve(__dirname, '../../.../../../shared/orm/entities/*{.ts, .js}')],
+  migrations: [resolve(__dirname, '../../.../../../shared/orm/migrations/*{.ts, .js}')],
   synchronize: true,
 });

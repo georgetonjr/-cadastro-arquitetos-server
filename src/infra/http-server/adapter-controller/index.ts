@@ -1,6 +1,6 @@
 import { Request, Response} from 'express';
 
-export const adapterController = (token: string, version: number) =>
+export const adapterController = (token: string) =>
   async (request: Request, response: Response): Promise<void> => {
     const httpRequest = {
       body: request.body,
