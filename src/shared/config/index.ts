@@ -1,5 +1,6 @@
 export const config = {
-  SERVER_PORT: 3000,
+  ENVIRONMENT: process.env.NODE_ENV || 'dev',
+  SERVER_PORT: Number(process.env.SERVER_PORT) || 9000,
 
   DATABASE: {
     HOST: process.env.DATABASE_HOST || 'localhost',
