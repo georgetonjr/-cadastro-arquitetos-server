@@ -1,4 +1,7 @@
 export interface HttpResponse {
-  statusCode: number;
-  body?: any;
+  sendStatus?: unknown;
+  jsonp?: unknown;
+  send?: unknown;
+  status?: unknown;
+  json?: unknown;
 }
