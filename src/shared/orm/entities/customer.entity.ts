@@ -26,9 +26,6 @@ export class CustomerEntity {
   @Column()
     age: number;
 
-  @Column({ name: 'other_informations' })
-    otherInformations: string;
-
   @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;
 

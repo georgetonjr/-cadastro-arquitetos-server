@@ -27,7 +27,7 @@ export class OrderServiceEntity {
     status: string;
 
   @OneToOne(() => ArchitectEntity)
-    architect: ArchitectEntity;
+    architect?: ArchitectEntity;
 
   @OneToOne(() => CustomerEntity)
     customer: CustomerEntity;
