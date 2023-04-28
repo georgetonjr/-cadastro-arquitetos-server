@@ -1,4 +1,4 @@
-import { Express, Response } from 'express'
+import { Express, Response } from 'express';
 
 export const setupRoutes = (app: Express) => {
   app.get('/health', (_, res: Response) => {
@@ -9,4 +9,4 @@ export const setupRoutes = (app: Express) => {
   });
 
   // app.use('/api', []);
-}
+};

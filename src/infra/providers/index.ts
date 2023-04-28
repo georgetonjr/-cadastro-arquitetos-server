@@ -7,4 +7,4 @@ export const setupProviders = async () => {
   } catch (error) {
     console.log('Error on setup providers, ', error);
   }
-}
+};

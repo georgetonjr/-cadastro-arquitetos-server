@@ -1,4 +1,4 @@
-import { Request, Response} from 'express';
+import { Request, Response } from 'express';
 import { factory } from '../../dependency-injection/service-factory';
 import { Controller } from '../../../shared/interface/controller';
 import { HttpRequest } from '../../../shared/interface/http-request';
@@ -20,7 +20,7 @@ export const adapterController = (token: string) =>
       status: response.status,
       json: response.json,
       jsonp: response.jsonp,
-    }
+    };
 
     const controller = factory<Controller>(token);
     await controller.handle(httpRequest, httpResponse);

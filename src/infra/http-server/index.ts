@@ -8,4 +8,4 @@ export default async (): Promise<Express> => {
   await setupProviders();
   setupRoutes(app);
   return app;
-}
+};

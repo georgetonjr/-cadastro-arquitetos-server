@@ -1,4 +1,4 @@
-import 'reflect-metadata'
+import 'reflect-metadata';
 import httpServer from './infra/http-server';
 import { config } from './shared/config';
 
