@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class InitDb1682706398724 implements MigrationInterface {
-  name = 'InitDb1682706398724';
+export class InitDb1682708345482 implements MigrationInterface {
+  name = 'InitDb1682708345482';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query('CREATE TABLE "architect" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying NOT NULL, "email" character varying NOT NULL, "phone" character varying NOT NULL, "gender" character varying NOT NULL, "age" integer NOT NULL, "other_informations" character varying NOT NULL, "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "PK_54557cabef3d97c2c1fb9facccd" PRIMARY KEY ("id"))');

@@ -8,6 +8,7 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "start": "node ./src/main.js",
+    "docker:up": "sh up-db.sh",
     "dev": "cross-env NODE_ENV=dev ts-node-dev --respawn ./src/main.ts",
     "lint": "npx eslint . --ext .ts --fix",
     "lint:commit": "npx eslint . --ext .js,.jsx,.ts,.tsx --cache",
