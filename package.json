@@ -1,0 +1,19 @@
+{
+  "name": "cadastro-arquitetos-server",
+  "version": "1.0.0",
+  "main": "src/main.ts",
+  "repository": "git@github.com:georgetonjr/cadastro-arquitetos-server.git",
+  "author": "Georgeton Junior <georgetonjr@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.16.2",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
