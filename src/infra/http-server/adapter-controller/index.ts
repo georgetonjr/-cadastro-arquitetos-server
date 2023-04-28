@@ -1,13 +1,17 @@
 import { Request, Response} from 'express';
+import { factory } from '../../dependency-injection/service-factory';
+import { Controller } from '../../../shared/interface/controller';
+import { HttpRequest } from '../../../shared/interface/http-request';
 
 export const adapterController = (token: string) =>
   async (request: Request, response: Response): Promise<void> => {
-    const httpRequest = {
+    const httpRequest: HttpRequest = {
       body: request.body,
       headers: request.headers,
       params: request.params,
       query: request.query,
     };
-    console.log('chegou no adapter controller com as seguintes informacoes', request);
-    response.sendStatus(200);
+
+    const controller = factory<Controller>(token);
+    await controller.handle(request, response);
   };
