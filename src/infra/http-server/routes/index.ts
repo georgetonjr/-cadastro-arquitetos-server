@@ -1,6 +1,7 @@
 import { Express, Response } from 'express';
 import { registerCustomerRouter } from './register-customer/register-customer.router';
 import { registerArchitectRouter } from './register-architect/register-architect.router';
+import { createOrderServiceRouter } from './create-order-service/create-order-service.router';
 
 export const setupRoutes = (app: Express) => {
   app.get('/health', (_, res: Response) => {
@@ -13,5 +14,6 @@ export const setupRoutes = (app: Express) => {
   app.use('/api', [
     registerCustomerRouter,
     registerArchitectRouter,
+    createOrderServiceRouter,
   ]);
 };

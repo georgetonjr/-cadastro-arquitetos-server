@@ -4,9 +4,9 @@ import { RegisterCustomerRequest } from './domain/register-customer-request';
 import { CustomerRepository } from '../port/repositories/customer-repository';
 import { Validator } from '../../shared/interface/validator';
 import { InvalidDataError } from '../../shared/errors/invalid-data-error';
-import { Encrypt } from '../port/encrypt';
 import { Customer } from '../../entities/customer';
 import { RegisterCustomerResponse } from './domain/register-customer-response';
+import { EncryptComposition } from './domain/encrypt-composition';
 
 export interface RegisterCustomeUsecase extends Usecase<RegisterCustomerRequest, RegisterCustomerResponse | Error> {}
 
@@ -18,7 +18,7 @@ export class RegisterCustomer implements RegisterCustomeUsecase {
     @inject('RegisterCustomerValidator')
     private readonly validator: Validator<RegisterCustomerRequest>,
     @inject('Encrypt')
-    private readonly encrypt: Encrypt,
+    private readonly encrypt: EncryptComposition,
   ) {}
   
   async execute(payload: RegisterCustomerRequest): Promise<RegisterCustomerResponse | Error> {
@@ -28,7 +28,7 @@ export class RegisterCustomer implements RegisterCustomeUsecase {
         throw new InvalidDataError(errorFields);
       }
       const customer = await this.buildCustomer(payload);
-      const token = this.encrypt.jwtGenerate(customer);
+      const token = this.encrypt.jwtSign(customer);
 
       return { token };
     } catch (error) {
@@ -40,7 +40,7 @@ export class RegisterCustomer implements RegisterCustomeUsecase {
   private async buildCustomer(data: RegisterCustomerRequest): Promise<Customer> {
     const customer = new Customer({
       ...data,
-      password: this.encrypt.encrypt(data.password),
+      password: this.encrypt.encryptEncode(data.password),
     });
     await this.repository.save(customer);
     delete customer.password;
