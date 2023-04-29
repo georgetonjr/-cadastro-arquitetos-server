@@ -12,6 +12,12 @@ import {
 } from '../../../adapters/controllers/register-architect/register-architect-controller';
 import { ArchitectRepositoryTypeorm } from '../../../shared/orm/repositories/architect-repository-typeorm';
 import { RegisterArchitect } from '../../../usecases/register-architect/register-architect-usecase';
+import { 
+  CreateOrderServiceController, 
+} from '../../../adapters/controllers/create-order-service/create-order-service-controller';
+import { CreateOrderServiceValidator } from '../../../shared/services/validators/create-service-order-validator';
+import { CreateOrderService } from '../../../usecases/create-order-service/create-order-service-usecase';
+import { OrderServiceRepositoryTypeorm } from '../../../shared/orm/repositories/order-service-repository-typeorm';
 
 export const containerV1 = container.createChildContainer();
 
@@ -19,10 +25,15 @@ containerV1.register('RegisterCustomerUsecase', { useClass: RegisterCustomer });
 containerV1.register('RegisterCustomerController', { useClass: RegisterCustomerController });
 containerV1.register('RegisterArchitectController', { useClass: RegisterArchitectController });
 containerV1.register('RegisterArchitectUsecase', { useClass: RegisterArchitect });
+containerV1.register('CreateOrderServiceController', { useClass: CreateOrderServiceController });
+containerV1.register('CreateOrderServiceUsecase', { useClass: CreateOrderService });
 
+
+containerV1.register('CreateOrderServiceValidator', { useClass: CreateOrderServiceValidator });
 // repository
 containerV1.register('CustomerRepository', { useClass: CustomerRepositoryTypeorm });
 containerV1.register('ArchitectRepository', { useClass: ArchitectRepositoryTypeorm });
+containerV1.register('OrderServiceRepository', { useClass: OrderServiceRepositoryTypeorm });
 
 // services
 containerV1.register(

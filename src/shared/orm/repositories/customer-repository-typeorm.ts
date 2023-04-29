@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { CustomerRepository } from '../../../usecases/port/repositories/customer-repository';
+import { CustomerRepository, FindOptions } from '../../../usecases/port/repositories/customer-repository';
 import { CustomerEntity } from '../entities/customer.entity';
 import { dataSource } from '../../../infra/providers/database';
 import { Customer } from '../../../entities/customer';
@@ -12,6 +12,10 @@ export class CustomerRepositoryTypeorm implements CustomerRepository {
 
   constructor() {
     this.repository = dataSource.getRepository<Customer>(CustomerEntity);
+  }
+
+  async findOne(findOptions: FindOptions): Promise<Customer> {
+    return this.repository.findOne({ where: findOptions });
   }
 
   async save(data: Customer): Promise<void> {

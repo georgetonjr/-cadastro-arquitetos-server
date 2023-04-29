@@ -3,7 +3,7 @@ import {
   CreateDateColumn,
   Entity,
   OneToOne,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { ArchitectEntity } from './architect-entity';
@@ -11,19 +11,41 @@ import { CustomerEntity } from './customer.entity';
 
 @Entity({ name: 'order_service' })
 export class OrderServiceEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryColumn({ 
+    type: 'varchar', 
+    nullable: false, 
+  })
     id: string;
 
-  @Column()
+  @Column({ 
+    type: 'boolean', 
+    default: true, 
+  })
+    isActive: boolean;
+  
+  @Column({ 
+    type: 'varchar', 
+    default: true,
+  })
+    show: boolean;
+  
+  @Column({ 
+    type: 'varchar',
+    array: true, 
+    default: [],
+  })
+    rejectedBy: string[];
+
+  @Column({ type: 'varchar' })
     title: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
     description: string;
 
-  @Column()
+  @Column({ type: 'int' })
     price: number;
 
-  @Column()
+  @Column({ type: 'varchar' })
     status: string;
 
   @OneToOne(() => ArchitectEntity)

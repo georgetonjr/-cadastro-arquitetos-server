@@ -25,7 +25,7 @@ export class ArchitectEntity {
 
   @Column({ type: 'int' })
     age: number;
-  
+
   @Column({ nullable: false })
     password: string;
 
