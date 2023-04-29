@@ -18,6 +18,10 @@ import {
 import { CreateOrderServiceValidator } from '../../../shared/services/validators/create-service-order-validator';
 import { CreateOrderService } from '../../../usecases/create-order-service/create-order-service-usecase';
 import { OrderServiceRepositoryTypeorm } from '../../../shared/orm/repositories/order-service-repository-typeorm';
+import { ListOrderService } from '../../../usecases/list-order-service/list-order-service-usecase';
+import { 
+  ListOrderServiceController, 
+} from '../../../adapters/controllers/list-order-service/list-order-service-controller';
 
 export const containerV1 = container.createChildContainer();
 
@@ -28,6 +32,8 @@ containerV1.register('RegisterArchitectUsecase', { useClass: RegisterArchitect }
 containerV1.register('CreateOrderServiceController', { useClass: CreateOrderServiceController });
 containerV1.register('CreateOrderServiceUsecase', { useClass: CreateOrderService });
 
+containerV1.register('ListOrderServiceUsecase', { useClass: ListOrderService });
+containerV1.register('ListOrderServiceController', { useClass: ListOrderServiceController });
 
 containerV1.register('CreateOrderServiceValidator', { useClass: CreateOrderServiceValidator });
 // repository
