@@ -4,7 +4,7 @@ import { setupRoutes } from './routes';
 
 export default async (): Promise<Express> => {
   const app = express();
-
+  app.use(express.json());
   await setupProviders();
   setupRoutes(app);
   return app;

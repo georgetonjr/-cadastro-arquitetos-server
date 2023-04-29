@@ -1,4 +1,5 @@
 import { Express, Response } from 'express';
+import { registerCustomerRouter } from './register-customer/register-customer.router';
 
 export const setupRoutes = (app: Express) => {
   app.get('/health', (_, res: Response) => {
@@ -8,5 +9,7 @@ export const setupRoutes = (app: Express) => {
     });
   });
 
-  // app.use('/api', []);
+  app.use('/api', [
+    registerCustomerRouter,
+  ]);
 };

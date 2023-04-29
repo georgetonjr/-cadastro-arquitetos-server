@@ -2,32 +2,35 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 @Entity({ name: 'customer' })
 export class CustomerEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryColumn({ 
+    type: 'varchar', 
+    nullable: false, 
+  })
     id: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
     name: string;
 
-  @Column()
+  @Column({ unique: true })
     email: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
     phone: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
     gender: string;
 
-  @Column()
+  @Column({ type: 'int' })
     age: number;
-
-  @Column({ name: 'other_informations' })
-    otherInformations: string;
+  
+  @Column({ nullable: false })
+    password: string;
 
   @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;
