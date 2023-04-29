@@ -1,6 +1,6 @@
-import { Repository } from 'typeorm';
+import {  FindOptionsWhere, Repository } from 'typeorm';
 import { OrderService } from '../../../entities/order-service';
-import { OrderServiceRepository } from '../../../usecases/port/repositories/order-service-repository';
+import { ListOptions, OrderServiceRepository } from '../../../usecases/port/repositories/order-service-repository';
 import { UserAlreadyExistsError } from '../../errors/user-already-exists-error';
 import { OrderServiceEntity } from '../entities/order-service.entity';
 import { dataSource } from '../../../infra/providers/database';
@@ -14,12 +14,26 @@ export class OrderServiceRepositoryTypeorm implements OrderServiceRepository {
     this.repository = dataSource.getRepository<OrderService>(OrderServiceEntity);
   }
 
-  async list(): Promise<OrderService[]> {
+  async update(criteria: string, options: Partial<OrderService>): Promise<void> {
+    await this.repository.update(criteria, options); 
+  }
+
+  async list(options?: ListOptions): Promise<OrderService[]> {
+    const findOptions: FindOptionsWhere<OrderService> = {
+      isActive: true,
+      show: true,
+    };
+
+    if (options.customerId) {
+      findOptions.customer = { id: options.customerId };
+    }
+
+    if (options.architectId) {
+      findOptions.architect = { id: options.architectId };
+    }
+
     return this.repository.find({ 
-      where: {
-        isActive: true,
-        show: true,
-      }, 
+      where: findOptions, 
     });
   }
 

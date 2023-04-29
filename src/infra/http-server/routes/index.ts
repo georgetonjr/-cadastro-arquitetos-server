@@ -3,6 +3,7 @@ import { registerCustomerRouter } from './register-customer/register-customer.ro
 import { registerArchitectRouter } from './register-architect/register-architect.router';
 import { createOrderServiceRouter } from './create-order-service/create-order-service.router';
 import { listOrderServiceRouter } from './list-order-service/list-order-service.router';
+import { updateServiceOrderRouter } from './update-service-order/update-service-order.router';
 
 export const setupRoutes = (app: Express) => {
   app.get('/health', (_, res: Response) => {
@@ -17,5 +18,7 @@ export const setupRoutes = (app: Express) => {
     registerArchitectRouter,
     createOrderServiceRouter,
     listOrderServiceRouter,
+    updateServiceOrderRouter,
+
   ]);
 };
