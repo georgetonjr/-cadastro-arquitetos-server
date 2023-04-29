@@ -3,9 +3,9 @@
 cadastra/alterar/login customer e architect
 
 cliente -> ordem de servico
-list
+list -> ok
 create ok
-update
+update -> alterar metodo de list para receber customer
 deactivate/activate
 
 arquiteto -> ordem de servico

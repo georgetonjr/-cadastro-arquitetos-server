@@ -10,6 +10,7 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction) => 
     if (!token) {
       return res.status(401).json({ message: 'Token não informado' });
     }
+
     const verify = jwtService.jwtVerify(token);
     req.body.user = verify.data;
     next();
@@ -17,5 +18,6 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction) => 
     if (error instanceof TokenExpiredError) {
       return res.status(401).json({ message: 'Token expirado' });
     }
+    return res.status(401).json({ message: 'Token invalido' });
   }
 };

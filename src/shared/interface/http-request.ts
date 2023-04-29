@@ -1,6 +1,7 @@
 export interface HttpRequest {
-  body?: unknown;
-  query?: unknown;
-  params?: unknown;
-  headers?: unknown;
+  body?: any;
+  query?: any;
+  params?: any;
+  headers?: any;
+  user?: any;
 }

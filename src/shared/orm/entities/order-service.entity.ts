@@ -2,8 +2,10 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToOne,
+  JoinColumn,
+  ManyToOne,
   PrimaryColumn,
+  Relation,
   UpdateDateColumn,
 } from 'typeorm';
 import { ArchitectEntity } from './architect-entity';
@@ -48,11 +50,17 @@ export class OrderServiceEntity {
   @Column({ type: 'varchar' })
     status: string;
 
-  @OneToOne(() => ArchitectEntity)
-    architect?: ArchitectEntity;
+  @ManyToOne(() => ArchitectEntity)
+  @JoinColumn({ name: 'architect_id' })
+    architect?: Relation<ArchitectEntity>;
 
-  @OneToOne(() => CustomerEntity)
-    customer: CustomerEntity;
+  @ManyToOne(() => CustomerEntity, (customer) => customer.id)
+  @JoinColumn({ 
+    name: 'customer_id', 
+    foreignKeyConstraintName: 'customer_id', 
+    referencedColumnName: 'id',
+  })
+    customer: Relation<CustomerEntity>;
 
   @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;
