@@ -7,8 +7,13 @@ import { config } from '../../config';
 export class EncryptImplementation implements Encrypt {
   private readonly salt = 10;
 
-  jwtGenerate(body: any): string {
-    return sign(body, config.JWT_SECRET, { expiresIn: '24h' });
+  jwtGenerate(body: Object): string {
+    return sign(
+      JSON.stringify({
+        exp: Math.floor(Date.now() / 1000) + (60 * 60),
+        data: body,
+      }), config.JWT_SECRET,
+    );
   }
 
   jwtVerify(token: string) {

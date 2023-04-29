@@ -1,6 +1,6 @@
 import { injectable } from 'tsyringe';
-import { Validator } from '../interface/validator';
-import { RegisterCustomerRequest } from '../../usecases/register-customer/domain/register-customer-request';
+import { Validator } from '../../interface/validator';
+import { RegisterCustomerRequest } from '../../../usecases/register-customer/domain/register-customer-request';
 import Joi from 'joi';
 
 @injectable()
@@ -12,6 +12,7 @@ export class RegisterCustomerValidator implements Validator<RegisterCustomerRequ
       phone: Joi.string().required(),
       gender: Joi.string().valid('male', 'female').required(),
       age: Joi.number().required(),
+      password: Joi.string().required(),
     });
     
     const validationResult = schema.validate(data);

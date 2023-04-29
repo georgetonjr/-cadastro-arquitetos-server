@@ -1,1 +1,3 @@
-export interface RegisterCustomerResponse {}
+export interface RegisterCustomerResponse {
+  token: string;
+}

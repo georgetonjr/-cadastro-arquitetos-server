@@ -6,6 +6,7 @@ import {
 import { CustomerRepositoryTypeorm } from '../../../shared/orm/repositories/customer-repository-typeorm';
 import { RegisterCustomerValidator } from '../../../shared/services/validators/register-customer-validator';
 import { EncryptImplementation } from '../../../shared/services/encrypt/encrypt-implementation';
+import { UuidGenerator } from '../../../shared/services/uuid/uuid-generator';
 
 export const containerV1 = container.createChildContainer();
 
@@ -27,4 +28,12 @@ containerV1.register(
   { useClass: EncryptImplementation }, 
   { lifecycle: Lifecycle.Singleton },
 );
+
+containerV1.register(
+  'IdentifierGenerator', 
+  { useClass: UuidGenerator }, 
+  { lifecycle: Lifecycle.Singleton },
+);
+
+
 

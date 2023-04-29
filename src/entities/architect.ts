@@ -11,6 +11,8 @@ export class Architect {
 
   age: number;
 
+  password: string;
+
   createdAt?: Date;
 
   updatedAt?: Date;

@@ -1,6 +1,6 @@
 export interface Encrypt {
   encrypt(password: string): string;
   verify(password: string, hash: string):boolean;
-  jwtGenerate(body: any): string;
+  jwtGenerate(body: Object): string;
   jwtVerify(token: string): any;
 }

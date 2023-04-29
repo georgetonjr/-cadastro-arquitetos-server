@@ -4,4 +4,5 @@ export interface RegisterCustomerRequest {
   phone: string;
   gender: string;
   age: number;
+  password: string;
 }
