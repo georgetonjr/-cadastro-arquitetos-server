@@ -14,6 +14,15 @@ export class OrderServiceRepositoryTypeorm implements OrderServiceRepository {
     this.repository = dataSource.getRepository<OrderService>(OrderServiceEntity);
   }
 
+  async list(): Promise<OrderService[]> {
+    return this.repository.find({ 
+      where: {
+        isActive: true,
+        show: true,
+      }, 
+    });
+  }
+
   async save(data: OrderService): Promise<void> {
     try {
       await this.repository.save(data);
