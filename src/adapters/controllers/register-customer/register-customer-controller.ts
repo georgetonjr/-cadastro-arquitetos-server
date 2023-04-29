@@ -20,7 +20,7 @@ export class RegisterCustomerController implements Controller {
         response.status(422).json({ message: error?.message });
         break;
       case UserAlreadyExistsError:
-        response.status(500).json({ message: error?.message });
+        response.status(400).json({ message: error?.message });
         break;
     
       default:
