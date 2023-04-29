@@ -4,7 +4,7 @@ import { resolve } from 'path';
 
 export const dataSource = new DataSource({
   type: 'postgres',
-  host: 'localhost',
+  host: config.DATABASE.HOST,
   port: 5432,
   username: config.DATABASE.USER,
   password: config.DATABASE.PASSWORD,
