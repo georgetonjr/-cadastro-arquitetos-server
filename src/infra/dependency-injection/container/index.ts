@@ -7,14 +7,22 @@ import { CustomerRepositoryTypeorm } from '../../../shared/orm/repositories/cust
 import { RegisterCustomerValidator } from '../../../shared/services/validators/register-customer-validator';
 import { EncryptImplementation } from '../../../shared/services/encrypt/encrypt-implementation';
 import { UuidGenerator } from '../../../shared/services/uuid/uuid-generator';
+import { 
+  RegisterArchitectController, 
+} from '../../../adapters/controllers/register-architect/register-architect-controller';
+import { ArchitectRepositoryTypeorm } from '../../../shared/orm/repositories/architect-repository-typeorm';
+import { RegisterArchitect } from '../../../usecases/register-architect/register-architect-usecase';
 
 export const containerV1 = container.createChildContainer();
 
 containerV1.register('RegisterCustomerUsecase', { useClass: RegisterCustomer });
 containerV1.register('RegisterCustomerController', { useClass: RegisterCustomerController });
+containerV1.register('RegisterArchitectController', { useClass: RegisterArchitectController });
+containerV1.register('RegisterArchitectUsecase', { useClass: RegisterArchitect });
 
 // repository
 containerV1.register('CustomerRepository', { useClass: CustomerRepositoryTypeorm });
+containerV1.register('ArchitectRepository', { useClass: ArchitectRepositoryTypeorm });
 
 // services
 containerV1.register(
