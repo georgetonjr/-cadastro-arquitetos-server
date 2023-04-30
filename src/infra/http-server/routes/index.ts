@@ -4,6 +4,11 @@ import { registerArchitectRouter } from './register-architect/register-architect
 import { createOrderServiceRouter } from './create-order-service/create-order-service.router';
 import { listOrderServiceRouter } from './list-order-service/list-order-service.router';
 import { updateServiceOrderRouter } from './update-service-order/update-service-order.router';
+import { authCustomerRouter } from './auth-consumer/auth-consumer.router';
+import { authArchitectRouter } from './auth-architect/auth-architect.router';
+import { 
+  acceptOrRejectOrderServiceRouter, 
+} from './accept-or-reject-service-order/accept-or-reject-service-order.router';
 
 export const setupRoutes = (app: Express) => {
   app.get('/health', (_, res: Response) => {
@@ -19,6 +24,9 @@ export const setupRoutes = (app: Express) => {
     createOrderServiceRouter,
     listOrderServiceRouter,
     updateServiceOrderRouter,
-
+    authCustomerRouter,
+    authArchitectRouter,
+    acceptOrRejectOrderServiceRouter,
+    
   ]);
 };
