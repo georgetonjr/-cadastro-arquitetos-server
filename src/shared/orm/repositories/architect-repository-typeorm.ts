@@ -1,6 +1,6 @@
 import { Repository } from 'typeorm';
 import { Architect } from '../../../entities/architect';
-import { ArchitectRepository } from '../../../usecases/port/repositories/architect-repository';
+import { ArchitectRepository, FindOptions } from '../../../usecases/port/repositories/architect-repository';
 import { ArchitectEntity } from '../entities/architect-entity';
 import { dataSource } from '../../../infra/providers/database';
 import { UserAlreadyExistsError } from '../../errors/user-already-exists-error';
@@ -12,6 +12,10 @@ export class ArchitectRepositoryTypeorm implements ArchitectRepository {
 
   constructor() {
     this.repository = dataSource.getRepository<Architect>(ArchitectEntity);
+  }
+  
+  findOne(findOptions: Partial<FindOptions>): Promise<Architect> {
+    return this.repository.findOne({ where: findOptions });
   }
 
   async save(data: Architect): Promise<void> {
