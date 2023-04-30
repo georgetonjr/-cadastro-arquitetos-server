@@ -24,11 +24,11 @@ export class OrderServiceRepositoryTypeorm implements OrderServiceRepository {
       show: true,
     };
 
-    if (options.customerId) {
+    if (options && options.customerId) {
       findOptions.customer = { id: options.customerId };
     }
 
-    if (options.architectId) {
+    if (options && options.architectId) {
       findOptions.architect = { id: options.architectId };
     }
 
