@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "module": "commonjs",
+    "outDir": "dist",
+    "allowJs": true,
+    "strict": false,
+    "declaration": true,
+    "esModuleInterop": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true,
+    "rootDirs": ["src"],
+    "baseUrl": "."
+  },
+  "compileOnSave": false,
+  "include": ["**/*.ts", "jest.config.js", "jest.setup.js"],
+  "exclude": ["node_modules", "dist"]
+}
