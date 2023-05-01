@@ -21,7 +21,6 @@ export class AcceptOrRejectOrderService implements AcceptOrRejectOrderServiceUse
 
   async execute(payload: AcceptOrRejectOrderServiceRequest): Promise<void> {
     try {
-
       const { errorFields, isValid } = this.validator.validate(payload);
       if (!isValid) {
         throw new InvalidDataError(errorFields);

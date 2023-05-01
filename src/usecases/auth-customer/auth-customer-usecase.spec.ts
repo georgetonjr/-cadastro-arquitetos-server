@@ -1,19 +1,20 @@
 import { Validator } from '../../shared/interface/validator';
-import { ArchitectRepository } from '../port/repositories/architect-repository';
-import { AuthArchitect, EncryptVerifyAndSign } from './auth-architect-usecase';
 import { mock, mockReset } from 'jest-mock-extended';
-import { AuthArchitectRequest } from './domain/auth-architect-request';
 import { faker } from '@faker-js/faker/locale/pt_BR';
-import { Architect } from 'src/entities/architect';
 import { InvalidDataError } from '../../shared/errors/invalid-data-error';
-import { ArchitectNotFoundError } from '../../shared/errors/architect-not-found-error';
 import { AuthError } from '../../shared/errors/auth-error';
+import { AuthCustomerRequest } from './domain/auth-customer-request';
+import { AuthCustomer } from './auth-customer-usecase';
+import { CustomerRepository } from '../port/repositories/customer-repository';
+import { CustomerNotFoundError } from '../../shared/errors/customer-not-found-error';
+import { Customer } from 'src/entities/customer';
+import { EncryptVerifyAndSign } from '../auth-architect/auth-architect-usecase';
 
-const repository = mock<ArchitectRepository>();
+const repository = mock<CustomerRepository>();
 const encrypt = mock<EncryptVerifyAndSign>();
 const validator = mock<Validator<any>>();
 
-const makeSUT = () => new AuthArchitect(
+const makeSUT = () => new AuthCustomer(
   repository,
   encrypt,
   validator,
@@ -22,7 +23,7 @@ const makeSUT = () => new AuthArchitect(
 const mockPayload = {
   email: faker.datatype.string(),
   password: faker.datatype.string(),
-} as AuthArchitectRequest;
+} as AuthCustomerRequest;
 
 const mockArchitect = {
   email: faker.datatype.string(),
@@ -30,10 +31,10 @@ const mockArchitect = {
   name: faker.datatype.string(),
   age: 18,
   id: faker.datatype.uuid(),
-} as Architect;
+} as Customer;
 
-describe('AuthArchitect', () => {
-  let sut: AuthArchitect;
+describe('AuthCustomer', () => {
+  let sut: AuthCustomer;
   beforeEach(() => {
     sut = makeSUT();
     mockReset(repository);
@@ -64,14 +65,14 @@ describe('AuthArchitect', () => {
     }
   });
 
-  test('Should call execute with ArchitectNotFoundError', async () => {
+  test('Should call execute with CustomerNotFoundError', async () => {
     try {
       validator.validate.mockReturnValue({ isValid: true });
       repository.findOne.mockResolvedValue(undefined);
       await sut.execute(mockPayload);
       
     } catch (error) {
-      expect(error).toBeInstanceOf(ArchitectNotFoundError);
+      expect(error).toBeInstanceOf(CustomerNotFoundError);
       expect(validator.validate).toHaveBeenCalledTimes(1);
       expect(validator.validate).toHaveBeenCalledWith(mockPayload);
     }

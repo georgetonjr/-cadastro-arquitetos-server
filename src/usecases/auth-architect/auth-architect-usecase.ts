@@ -12,7 +12,7 @@ import { ArchitectNotFoundError } from '../../shared/errors/architect-not-found-
 
 export interface AuthArchitectUsecase extends Usecase<AuthArchitectRequest, AuthArchitectResponse> {}
 
-interface EncryptVerifyAndSign extends EncryptVerify, JwtSign {}
+export interface EncryptVerifyAndSign extends EncryptVerify, JwtSign {}
 @injectable()
 export class AuthArchitect implements AuthArchitectUsecase {
   constructor(

@@ -1,29 +1,30 @@
 import { inject, injectable } from 'tsyringe';
 import { Usecase } from '../../shared/interface/usecase';
-import { UpdateOrderServiceRequest } from './domain/update-order-service-request';
 import { OrderServiceRepository } from '../port/repositories/order-service-repository';
 import { Validator } from '../../shared/interface/validator';
 import { InvalidDataError } from '../../shared/errors/invalid-data-error';
+import { FinishOrderServiceRequest } from './domain/finish-order-service-request';
+import { OrderServiceStatusEnum } from 'src/entities/enum/order-service-status-enum';
 
-export interface UpdateOrderServiceUsecase extends Usecase<UpdateOrderServiceRequest, void> {}
+export interface FinishOrderServiceUsecase extends Usecase<FinishOrderServiceRequest, void> {}
 
 @injectable()
-export class UpdateOrderService implements UpdateOrderServiceUsecase {
+export class FinishOrderService implements FinishOrderServiceUsecase {
   constructor(
     @inject('OrderServiceRepository')
     private readonly repository: OrderServiceRepository,
-    @inject('UpdateOrderServiceValidator')
-    private readonly validator: Validator<UpdateOrderServiceRequest>,
+    @inject('FinishOrderServiceValidator')
+    private readonly validator: Validator<FinishOrderServiceRequest>,
   ) {}
 
-  async execute(payload: UpdateOrderServiceRequest): Promise<void> {
+  async execute(payload: FinishOrderServiceRequest): Promise<void> {
     try {
       const { errorFields, isValid } = this.validator.validate(payload);
       if (!isValid) {
         throw new InvalidDataError(errorFields);
       }
 
-      await this.repository.update(payload.id, payload.updateOptions);
+      await this.repository.update(payload.orderServiceId, { status: OrderServiceStatusEnum.COMPLETED });
 
     } catch (err) {
       throw err;

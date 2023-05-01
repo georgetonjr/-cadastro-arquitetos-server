@@ -1,16 +1,8 @@
-# cadastro-arquitetos-server
+Projeto de servidor para clientes encontrarem arquitetos 
+desenvolvido em node.js utilizando conceitos de SOLID, clean architecture e aplicando os pattern de adapters e repositories.
+tecnologias utilizadas: node.Js, typeORM, express, Jest, postgres.
 
-cadastra/alterar/login customer e architect
+Para rodar o projeto: rodar o comando ```yarn``` na raiz do projeto para instalar as bibliotecas utilizadas e depois o comando yarn dev.
+Deve se criar o arquivo .env.dev com as variaveis necessarias de acordo com o .env.example
 
-cliente -> ordem de servico
-list -> alterar metodo de list para receber customer -> criar usecase para listar as ordens de servico do customer
-create ok
-update -> ok
-deactivate/activate -> criar usecase
-
-arquiteto -> ordem de servico
-list -> ok 
-list-by-architect -> criar usecase para listar as ordens de servico aceitas do architect
-aceitar -> criar usecase para aceitar ordem de servico
-recusar -> criar usecase para recusar ordem de servico
-complete -> criar usecase para quando a ordem de servico for finalizada
+versão do node utilizada: v18.16.0

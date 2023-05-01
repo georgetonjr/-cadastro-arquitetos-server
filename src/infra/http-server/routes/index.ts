@@ -9,6 +9,7 @@ import { authArchitectRouter } from './auth-architect/auth-architect.router';
 import { 
   acceptOrRejectOrderServiceRouter, 
 } from './accept-or-reject-service-order/accept-or-reject-service-order.router';
+import { finishServiceOrderRouter } from './finish-order-service/finish-order-service.router';
 
 export const setupRoutes = (app: Express) => {
   app.get('/health', (_, res: Response) => {
@@ -27,6 +28,6 @@ export const setupRoutes = (app: Express) => {
     authCustomerRouter,
     authArchitectRouter,
     acceptOrRejectOrderServiceRouter,
-    
+    finishServiceOrderRouter,
   ]);
 };

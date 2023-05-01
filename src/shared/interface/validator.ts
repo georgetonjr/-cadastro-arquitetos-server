@@ -1,6 +1,6 @@
 export interface ValidatorResult<TPayload> {
-  value: TPayload;
-  errorFields: string[];
+  value?: TPayload;
+  errorFields?: string[];
   isValid: boolean;
 }
 
