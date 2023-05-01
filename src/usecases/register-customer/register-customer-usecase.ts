@@ -32,7 +32,6 @@ export class RegisterCustomer implements RegisterCustomeUsecase {
 
       return { token };
     } catch (error) {
-      // console.log(error);
       throw error;
     }
   }

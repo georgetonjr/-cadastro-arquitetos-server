@@ -20,7 +20,6 @@ export class UpdateOrderService implements UpdateOrderServiceUsecase {
     try {
       const { errorFields, isValid } = this.validator.validate(payload);
       if (!isValid) {
-        console.log(errorFields);
         throw new InvalidDataError(errorFields);
       }
 
