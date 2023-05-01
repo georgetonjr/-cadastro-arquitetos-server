@@ -26,7 +26,6 @@ export class ListOrderService implements ListOrderServiceUsecase {
 
       return { orderService: orderServices };
     } catch (error) {
-      console.log(ListOrderService.name, 'Error: ', error);
       throw error;
     }
   }
