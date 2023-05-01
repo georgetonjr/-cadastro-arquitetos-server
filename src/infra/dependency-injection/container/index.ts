@@ -38,7 +38,12 @@ import {
 import {
   AcceptOrRejectOrderServiceController, 
 } from '../../../adapters/controllers/accept-or-reject-service-order/accept-or-reject-service-order-controller';
-import { AcceptOrRejectOrderServiceValidator } from '../../../shared/services/validators/accept-or-reject-order-service-validator';
+import { 
+  AcceptOrRejectOrderServiceValidator, 
+} from '../../../shared/services/validators/accept-or-reject-order-service-validator';
+import { FinishOrderServiceValidator } from 'src/shared/services/validators/finish-order-service-validator';
+import { FinishOrderService } from 'src/usecases/finish-order-service/finish-order-service-usecase';
+import { FinishOrderServiceController } from 'src/adapters/controllers/finish-order-service/finish-order-service-controller';
 
 
 export const containerV1 = container.createChildContainer();
@@ -73,6 +78,9 @@ containerV1.register('AuthArchitectController', { useClass: AuthArchitectControl
 containerV1.register('AuthArchitectUsecase', { useClass: AuthArchitect });
 
 containerV1.register('AuthValidator', { useClass: AuthValidator });
+containerV1.register('FinishOrderServiceValidator', { useClass: FinishOrderServiceValidator });
+containerV1.register('FinishOrderServiceUsecase', { useClass: FinishOrderService });
+containerV1.register('FinishOrderServiceController', { useClass: FinishOrderServiceController });
 
 // repository
 containerV1.register('CustomerRepository', { useClass: CustomerRepositoryTypeorm });
